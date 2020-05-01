@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-var timer = 0.0
+
+
 var jumpvelocity = 150.0
 var gravityscale = 200.0
 var anim = ""
@@ -8,22 +9,66 @@ var gravity      = 600
 var linear_vel = Vector2()
 var jump  = -300
 
+# Variables relacionadas con deteccion de combo ###################
+var timer= null
+var max_streak_delay = 1.1
+var streak1= 0 setget set_streak
+var on_combo=false  #aun no tiene uso
+var new_streak=0
+################################################################
+
+var health = 1000 setget set_health
+var death = false
+
 export(int) var walk_vel = 150
 
 onready var playback = $AnimationTree.get("parameters/playback")
 
+	
+func set_health(value):
+	health=value	
+
 func _ready():
+####### Construccion del timer
+	timer = Timer.new()
+	timer.set_one_shot(true)
+	timer.set_wait_time(max_streak_delay)
+	timer.connect("timeout",self,"on_timeout_complete")
+	add_child(timer)
 
-	pass
+	$Attacks.connect("area_entered", self, "on_enemy_entered")
+	
+func on_timeout_complete():  #tiempo expirado
+	on_combo=false
+	set_streak(0)
 
+func on_enemy_entered(area: Area2D):
+	if area.is_in_group("Enemy"):
+		area.take_damage(40)
+		
+		#inicio/reinicio del timer
+		timer.start()
+		new_streak=(streak1 +1)
+		set_streak(new_streak)
+
+
+######## Barra de carga del combo			
+func set_streak(value):
+	print(streak1)
+	streak1=value
+	$StreakBar.value = value	
+
+			
+		
 func _process(delta):
 	pass
+
 
 func _physics_process(delta):
 	
 	linear_vel.y +=delta * gravity #gravedad
 	linear_vel = move_and_slide(linear_vel, Vector2(0,-1))
-
+	
 	var move_left = Input.is_action_pressed("left")
 	var move_right = Input.is_action_pressed("right")
 	var jumping = Input.is_action_just_pressed("jump")
@@ -56,9 +101,12 @@ func _physics_process(delta):
 		if basic:
 			playback.travel("atack1")
 			linear_vel.x = 0
+			
 		if special: 
 			playback.travel("atack2")						
 			linear_vel.x = 0
+	
+			
 	elif on_floor:
 		if abs(linear_vel.x) > 10.00:
 			playback.travel("Walk")
@@ -68,7 +116,6 @@ func _physics_process(delta):
 			playback.travel("jump_start")
 		else:
 			playback.travel("idle")			
-		
 	else:
 		if linear_vel.y > 0:
 			playback.travel("jump_air")
