@@ -20,7 +20,7 @@ var b_timer=null
 var cancel_charger = 1
 var cancel_status = 1  setget set_cancel_status #cancel points 
 var current_status=cancel_status #no sé por que metí esto....
-var min_cancel = 20 #Bajo este numero, no se restan cancel points por daño
+var min_cancel = 12 #Bajo este numero, no se restan cancel points por daño
 
 
 #resistencia personaje
