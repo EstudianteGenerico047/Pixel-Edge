@@ -12,20 +12,20 @@ var timer= null
 var max_streak_delay = 1.3
 var streak1= 0 setget set_streak
 var on_combo=false  #aun no tiene uso
-var new_streak=0
+var new_streak=0 # strike points
 var multiplier=1 #hay q definir la función multiplier
 
 #variables relacionadas con attack cancel
 var b_timer=null
 var cancel_charger = 1
-var cancel_status = 1  setget set_cancel_status
-var current_status=cancel_status
-
+var cancel_status = 1  setget set_cancel_status #cancel points 
+var current_status=cancel_status #no sé por que metí esto....
+var min_cancel = 20 #Bajo este numero, no se restan cancel points por daño
 
 
 #resistencia personaje
 var ded=false
-var health = 1001 setget set_health
+var health = 1001 setget set_health # health points
 var helt = null
 var death = false
 
@@ -48,7 +48,9 @@ func set_health(value):
 	print(health)
 	$HealthBar.value = value
 	b_timer.start()###reinicio timer cancel
-	set_cancel_status(cancel_status-6)
+	if cancel_status>min_cancel:
+		set_cancel_status(cancel_status-6)
+	
 	
 ####### barra atack cancel##################
 func set_cancel_status(value):
@@ -91,7 +93,7 @@ func _ready():
 
 #barra de cancel al máximo
 func on_cancel_charged():   #cancel cargado al 100%
-	if cancel_status<59:    #miesntras no se alcance la carga máxima
+	if cancel_status<59:    #mientras no se alcance la carga máxima
 		b_timer.start()
 		set_cancel_status(cancel_status+1)
 	else:                  #si se trata de superar la carga máxima
@@ -107,9 +109,8 @@ func on_enemy_entered(Attacks: Area2D):
 		if playback.get_current_node()=="Finisher":  #caso de lanzar el finisher 
 			if streak1<5:									#El combo es muy bajo
 				helt=health-(20*rand_range(1,14))
-				
-				set_cancel_status(cancel_status-2)
-				cancel_charger=cancel_charger-2
+				if cancel_status>min_cancel:
+					set_cancel_status(cancel_status-4)
 				b_timer.start()
 				set_health(helt)
 			if streak1>4: 								#el combo es aceptable
@@ -119,7 +120,6 @@ func on_enemy_entered(Attacks: Area2D):
 			Attacks.take_damage(20)
 		#inicio/reinicio timer
 			set_cancel_status(cancel_status+1)
-			cancel_charger=cancel_charger+1
 			timer.start()
 			new_streak=(streak1 +1)
 			set_streak(new_streak)
