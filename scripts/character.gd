@@ -18,20 +18,32 @@ var new_streak=0
 var multiplier=1 #hay q definir la función multiplier
 
 ################################################################
-
-var health = 1000 setget set_health
+var ded=false
+var health = 1001 setget set_health
 var helt = null
-var death = false
+var death = false setget on_dead
 
 export(int) var walk_vel = 150
 
 onready var playback = $AnimationTree.get("parameters/playback")
 
-	
+
+
+
 func set_health(value):
+	playback.travel("hurt")
 	health=value	
 	$HealthBar.value = value
+	if health < 0.0:
+		print("ded")
+		var death=true
 	print(health)
+	
+func on_dead(value):
+	if value==true:
+		playback.travel("ded")
+		set_physics_process(false)
+		
 func _ready():
 ####### Construccion del timer
 	timer = Timer.new()
@@ -46,21 +58,23 @@ func on_timeout_complete():  #tiempo expirado
 	on_combo=false
 	set_streak(0)
 	
-func on_enemy_entered(area: Area2D):
-	if area.is_in_group("Enemy"):
+func on_enemy_entered(Attacks: Area2D):
+	if Attacks.is_in_group("Enemy"):
 		if playback.get_current_node()=="Finisher":  #caso de lanzar el finisher 
 			if streak1<3:										#El combo es muy bajo
 				helt=health-(20*rand_range(1,14))
 				set_health(helt)
 			if streak1>2: 
-				area.take_damage(30*streak1)#cambiar streak1 por multiplier cuando este listo
+				Attacks.take_damage(30*streak1)#cambiar streak1 por multiplier cuando este listo
 				set_streak(0)
 		else: 
-			area.take_damage(20)
+			Attacks.take_damage(20)
 		#inicio/reinicio timer
 			timer.start()
 			new_streak=(streak1 +1)
 			set_streak(new_streak)
+	else:
+		pass
 
 
 ######## Barra de carga del combo			
@@ -80,11 +94,11 @@ func _physics_process(delta):
 	linear_vel.y +=delta * gravity #gravedad
 	linear_vel = move_and_slide(linear_vel, Vector2(0,-1))
 	
-	var move_left = Input.is_action_pressed("left")
-	var move_right = Input.is_action_pressed("right")
-	var jumping = Input.is_action_just_pressed("jump")
-	var basic         = Input.is_action_just_pressed("basic_atack")
-	var special         = Input.is_action_just_pressed("special_atack")
+	var move_left    = Input.is_action_pressed("left")
+	var move_right   = Input.is_action_pressed("right")
+	var jumping      = Input.is_action_just_pressed("jump")
+	var basic        = Input.is_action_just_pressed("basic_atack")
+	var special      = Input.is_action_just_pressed("special_atack")
 	var finisher     = Input.is_action_just_pressed("finisher_atack")
 	var target_vel=Vector2()
 	
@@ -103,11 +117,8 @@ func _physics_process(delta):
 		if jumping:
 			linear_vel.y= jump
 			
-	if Input.is_action_just_pressed("ui_end"):   #Hacerse la suicidación
-		helt=health-100
-		set_health(helt)
 
-
+	
 	linear_vel.x=lerp(linear_vel.x,target_vel.x,0.2)
 	
 	##########################animacion########################################
@@ -124,6 +135,11 @@ func _physics_process(delta):
 			linear_vel.x = 0
 			
 	elif on_floor:
+		if Input.is_action_just_pressed("ui_end"):   #Hacerse la suicidación
+			playback.travel("hurt")
+			helt=health-100
+			set_health(helt)
+			
 		if abs(linear_vel.x) > 10.00:
 			playback.travel("Walk")
 			if linear_vel.y !=0:
@@ -141,8 +157,6 @@ func _physics_process(delta):
 			
 
 ###orientacion espacial
-
-
 	if Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
 		$sprite.scale.x = -1.5
 		$Attacks.scale.x = -1
@@ -150,15 +164,3 @@ func _physics_process(delta):
 	if Input.is_action_pressed("right") and not Input.is_action_pressed("left"):
 		$sprite.scale.x = 1.5
 		$Attacks.scale.x = 1
-		
-func _on_Continue_pressed():
-	pass # Replace with function body.
-
-
-func _on_Retry_pressed():
-	pass # Replace with function body.
-
-func _on_Quit_pressed():
-	pass # Replace with function body.
-
-
