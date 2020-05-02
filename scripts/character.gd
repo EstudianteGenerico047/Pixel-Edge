@@ -48,18 +48,19 @@ func on_timeout_complete():  #tiempo expirado
 	
 func on_enemy_entered(area: Area2D):
 	if area.is_in_group("Enemy"):
-		if $AnimationTree.get_animation_player()=="Finisher":  #caso de lanzar el finisher 
+		if playback.get_current_node()=="Finisher":  #caso de lanzar el finisher 
 			if streak1<3:										#El combo es muy bajo
 				helt=health-(20*rand_range(1,14))
 				set_health(helt)
 			if streak1>2: 
-				area.take_damage(50*streak1)#cambiar streak1 por multiplier cuando este listo
+				area.take_damage(30*streak1)#cambiar streak1 por multiplier cuando este listo
 				set_streak(0)
-		area.take_damage(20)
+		else: 
+			area.take_damage(20)
 		#inicio/reinicio timer
-		timer.start()
-		new_streak=(streak1 +1)
-		set_streak(new_streak)
+			timer.start()
+			new_streak=(streak1 +1)
+			set_streak(new_streak)
 
 
 ######## Barra de carga del combo			
