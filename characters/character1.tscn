@@ -400,7 +400,7 @@ states/ded/position = Vector2( -386.886, 346.495 )
 states/hurt/node = SubResource( 20 )
 states/hurt/position = Vector2( -386.886, 191 )
 states/idle/node = SubResource( 21 )
-states/idle/position = Vector2( -293, 77 )
+states/idle/position = Vector2( -294, 77 )
 states/jump_air/node = SubResource( 22 )
 states/jump_air/position = Vector2( 519, 100 )
 states/jump_down/node = SubResource( 23 )
@@ -464,7 +464,7 @@ texture = ExtResource( 1 )
 normal_map = SubResource( 2 )
 vframes = 7
 hframes = 6
-frame = 7
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.5
