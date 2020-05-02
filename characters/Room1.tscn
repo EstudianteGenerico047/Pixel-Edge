@@ -23,10 +23,3 @@ position = Vector2( 109.943, 112.483 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 442.839, 117.277 )
-
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}

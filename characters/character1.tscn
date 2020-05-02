@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Textures/slug1.png" type="Texture" id=1]
 [ext_resource path="res://scripts/character.gd" type="Script" id=2]
@@ -7,6 +7,34 @@
 extents = Vector2( 35.4287, 8.36672 )
 
 [sub_resource type="AnimatedTexture" id=2]
+
+[sub_resource type="Animation" id=52]
+resource_name = "Finisher"
+length = 1.434
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 30, 37, 34, 36, 37, 30 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attacks/Final:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Walk"
@@ -219,6 +247,13 @@ height = 47.9733
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 54.6121, 12.615 )
 
+[sub_resource type="LineShape2D" id=53]
+normal = Vector2( 0.0138483, 0.999904 )
+d = 43.9547
+
+[sub_resource type="AnimationNodeAnimation" id=54]
+animation = "Finisher"
+
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "Walk"
 
@@ -300,11 +335,24 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=46]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+
 [sub_resource type="AnimationNodeStateMachine" id=47]
+states/Finisher/node = SubResource( 54 )
+states/Finisher/position = Vector2( -161.495, 312.189 )
 states/Walk/node = SubResource( 16 )
 states/Walk/position = Vector2( 73, -16 )
 states/atack1/node = SubResource( 17 )
-states/atack1/position = Vector2( 134, 329 )
+states/atack1/position = Vector2( 134, 312.189 )
 states/atack2/node = SubResource( 18 )
 states/atack2/position = Vector2( 371, 306 )
 states/ded/node = SubResource( 19 )
@@ -319,10 +367,10 @@ states/jump_down/node = SubResource( 23 )
 states/jump_down/position = Vector2( 631, 183 )
 states/jump_start/node = SubResource( 24 )
 states/jump_start/position = Vector2( 519, 42 )
-transitions = [ "idle", "Walk", SubResource( 25 ), "Walk", "jump_start", SubResource( 26 ), "jump_start", "jump_air", SubResource( 27 ), "jump_air", "jump_down", SubResource( 28 ), "jump_down", "idle", SubResource( 29 ), "Walk", "idle", SubResource( 30 ), "idle", "atack1", SubResource( 31 ), "idle", "atack2", SubResource( 32 ), "atack1", "Walk", SubResource( 33 ), "atack2", "Walk", SubResource( 34 ), "Walk", "atack1", SubResource( 35 ), "Walk", "atack2", SubResource( 36 ), "hurt", "ded", SubResource( 37 ), "idle", "hurt", SubResource( 38 ), "jump_down", "hurt", SubResource( 39 ), "Walk", "hurt", SubResource( 40 ), "atack2", "hurt", SubResource( 41 ), "atack1", "hurt", SubResource( 42 ), "hurt", "idle", SubResource( 43 ), "idle", "jump_start", SubResource( 44 ), "atack1", "idle", SubResource( 45 ), "atack2", "idle", SubResource( 46 ) ]
+transitions = [ "idle", "Walk", SubResource( 25 ), "Walk", "jump_start", SubResource( 26 ), "jump_start", "jump_air", SubResource( 27 ), "jump_air", "jump_down", SubResource( 28 ), "jump_down", "idle", SubResource( 29 ), "Walk", "idle", SubResource( 30 ), "idle", "atack1", SubResource( 31 ), "idle", "atack2", SubResource( 32 ), "atack1", "Walk", SubResource( 33 ), "atack2", "Walk", SubResource( 34 ), "Walk", "atack1", SubResource( 35 ), "Walk", "atack2", SubResource( 36 ), "hurt", "ded", SubResource( 37 ), "idle", "hurt", SubResource( 38 ), "jump_down", "hurt", SubResource( 39 ), "Walk", "hurt", SubResource( 40 ), "atack2", "hurt", SubResource( 41 ), "atack1", "hurt", SubResource( 42 ), "hurt", "idle", SubResource( 43 ), "idle", "jump_start", SubResource( 44 ), "atack1", "idle", SubResource( 45 ), "atack2", "idle", SubResource( 46 ), "atack1", "Finisher", SubResource( 55 ), "atack2", "Finisher", SubResource( 56 ), "Finisher", "idle", SubResource( 57 ), "idle", "Finisher", SubResource( 58 ) ]
 start_node = "idle"
 end_node = "ded"
-graph_offset = Vector2( -491.495, -141.659 )
+graph_offset = Vector2( -491.495, 76.473 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=48]
 
@@ -337,6 +385,28 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 corner_detail = 1
 expand_margin_right = 1.0
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.0901961, 0.419608, 0.0862745, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0745098, 0.0509804, 0.0509804, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 20
+shadow_size = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=51]
+bg_color = Color( 0.572549, 0.0470588, 0.0470588, 1 )
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
 
 [node name="character" type="KinematicBody2D"]
 modulate = Color( 1, 1, 1, 0.964706 )
@@ -354,11 +424,12 @@ texture = ExtResource( 1 )
 normal_map = SubResource( 2 )
 vframes = 7
 hframes = 6
-frame = 3
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.5
 method_call_mode = 1
+anims/Finisher = SubResource( 52 )
 anims/Walk = SubResource( 3 )
 anims/atack1 = SubResource( 4 )
 anims/atack2 = SubResource( 5 )
@@ -391,6 +462,12 @@ rotation = -6.28319
 shape = SubResource( 15 )
 disabled = true
 
+[node name="Final" type="CollisionShape2D" parent="Attacks"]
+position = Vector2( 54.213, -42.9667 )
+scale = Vector2( 1.215, 1.021 )
+shape = SubResource( 53 )
+disabled = true
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 47 )
 anim_player = NodePath("../AnimationPlayer")
@@ -408,7 +485,22 @@ custom_styles/fg = SubResource( 49 )
 custom_colors/font_color = Color( 0.956863, 0.933333, 0.239216, 1 )
 custom_colors/font_color_shadow = Color( 0.52549, 0.133333, 0.133333, 1 )
 max_value = 30.0
-step = 0.01
+rounded = true
+allow_greater = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_left = -29.4194
+margin_top = -49.2884
+margin_right = 44.5806
+margin_bottom = -33.2884
+custom_styles/fg = SubResource( 50 )
+custom_styles/bg = SubResource( 51 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+max_value = 999.99
+value = 1000.0
 rounded = true
 allow_greater = true
 __meta__ = {
