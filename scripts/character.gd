@@ -44,7 +44,13 @@ func set_health(value):
 		var death=true
 		playback.travel("hurt")
 		playback.travel("ded")
+		#se detienen los timer
+		timer.stop()
+		b_timer.stop()
 		self.set_physics_process(false)
+		$StreakBar.queue_free()
+		$CancelBar.queue_free()
+		$HealthBar.queue_free()
 	print(health)
 	$HealthBar.value = value
 	b_timer.start()###reinicio timer cancel
