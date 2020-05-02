@@ -15,9 +15,12 @@ var max_streak_delay = 1.1
 var streak1= 0 setget set_streak
 var on_combo=false  #aun no tiene uso
 var new_streak=0
+var multiplier=1 #hay q definir la función multiplier
+
 ################################################################
 
 var health = 1000 setget set_health
+var helt = null
 var death = false
 
 export(int) var walk_vel = 150
@@ -27,7 +30,8 @@ onready var playback = $AnimationTree.get("parameters/playback")
 	
 func set_health(value):
 	health=value	
-
+	$HealthBar.value = value
+	print(health)
 func _ready():
 ####### Construccion del timer
 	timer = Timer.new()
@@ -41,12 +45,18 @@ func _ready():
 func on_timeout_complete():  #tiempo expirado
 	on_combo=false
 	set_streak(0)
-
+	
 func on_enemy_entered(area: Area2D):
 	if area.is_in_group("Enemy"):
-		area.take_damage(40)
-		
-		#inicio/reinicio del timer
+		if $AnimationTree.get_animation_player()=="Finisher":  #caso de lanzar el finisher 
+			if streak1<3:										#El combo es muy bajo
+				helt=health-(20*rand_range(1,14))
+				set_health(helt)
+			if streak1>2: 
+				area.take_damage(50*streak1)#cambiar streak1 por multiplier cuando este listo
+				set_streak(0)
+		area.take_damage(20)
+		#inicio/reinicio timer
 		timer.start()
 		new_streak=(streak1 +1)
 		set_streak(new_streak)
@@ -74,6 +84,7 @@ func _physics_process(delta):
 	var jumping = Input.is_action_just_pressed("jump")
 	var basic         = Input.is_action_just_pressed("basic_atack")
 	var special         = Input.is_action_just_pressed("special_atack")
+	var finisher     = Input.is_action_just_pressed("finisher_atack")
 	var target_vel=Vector2()
 	
 	var on_floor = is_on_floor()
@@ -91,21 +102,25 @@ func _physics_process(delta):
 		if jumping:
 			linear_vel.y= jump
 			
-
+	if Input.is_action_just_pressed("ui_end"):   #Hacerse la suicidación
+		helt=health-100
+		set_health(helt)
 
 
 	linear_vel.x=lerp(linear_vel.x,target_vel.x,0.2)
 	
 	##########################animacion########################################
-	if on_floor and (basic or special):
+	if on_floor and (basic or special or finisher):
 		if basic:
 			playback.travel("atack1")
 			linear_vel.x = 0
 			
 		if special: 
-			playback.travel("atack2")						
+			playback.travel("atack2")
 			linear_vel.x = 0
-	
+		if finisher:
+			playback.travel("Finisher")
+			linear_vel.x = 0
 			
 	elif on_floor:
 		if abs(linear_vel.x) > 10.00:
