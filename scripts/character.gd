@@ -21,7 +21,7 @@ var multiplier=1 #hay q definir la función multiplier
 var ded=false
 var health = 1001 setget set_health
 var helt = null
-var death = false setget on_dead
+var death = false
 
 export(int) var walk_vel = 150
 
@@ -33,16 +33,14 @@ onready var playback = $AnimationTree.get("parameters/playback")
 func set_health(value):
 	playback.travel("hurt")
 	health=value	
-	$HealthBar.value = value
-	if health < 0.0:
+	if health < 0.0:  #se murio la cosa
 		print("ded")
 		var death=true
-	print(health)
-	
-func on_dead(value):
-	if value==true:
 		playback.travel("ded")
-		set_physics_process(false)
+		self.set_physics_process(false)
+	print(health)
+	$HealthBar.value = value
+
 		
 func _ready():
 ####### Construccion del timer
@@ -61,10 +59,10 @@ func on_timeout_complete():  #tiempo expirado
 func on_enemy_entered(Attacks: Area2D):
 	if Attacks.is_in_group("Enemy"):
 		if playback.get_current_node()=="Finisher":  #caso de lanzar el finisher 
-			if streak1<3:									#El combo es muy bajo
+			if streak1<5:									#El combo es muy bajo
 				helt=health-(20*rand_range(1,14))
 				set_health(helt)
-			if streak1>2: 
+			if streak1>4: 
 				Attacks.take_damage(30*streak1)#cambiar streak1 por multiplier cuando este listo
 			
 		else: 
@@ -102,8 +100,6 @@ func _physics_process(delta):
 	var target_vel=Vector2()
 	
 	var on_floor = is_on_floor()
-
-
 		
 	####################movimientos######################################
 	if move_left:
@@ -125,7 +121,6 @@ func _physics_process(delta):
 		if basic:
 			playback.travel("atack1")
 			linear_vel.x = 0
-			
 		if special: 
 			playback.travel("atack2")
 			linear_vel.x = 0
