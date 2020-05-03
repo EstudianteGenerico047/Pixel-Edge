@@ -9,7 +9,7 @@ var jump  = -300
 
 # Variables relacionadas con deteccion de combo ###################
 var timer= null
-var max_streak_delay = 1.3
+var max_streak_delay = 2
 var streak1= 0 setget set_streak
 var on_combo=false  #aun no tiene uso
 var new_streak=0 # strike points
@@ -48,9 +48,7 @@ func set_health(value):
 		timer.stop()
 		b_timer.stop()
 		self.set_physics_process(false)
-		$StreakBar.queue_free()
-		$CancelBar.queue_free()
-		$HealthBar.queue_free()
+
 	print(health)
 	$HealthBar.value = value
 	b_timer.start()###reinicio timer cancel
@@ -121,7 +119,12 @@ func on_enemy_entered(Attacks: Area2D):
 				set_health(helt)
 			if streak1>4: 								#el combo es aceptable
 				Attacks.take_damage(30*streak1)#cambiar streak1 por multiplier cuando este listo
-			
+		elif playback.get_current_node()=="atack2":
+			Attacks.take_damage(50)						#ataque pesado
+			set_cancel_status(cancel_status+1)
+			timer.start()
+			new_streak=(streak1 +1)
+			set_streak(new_streak)
 		else:                                             #Ataque normal
 			Attacks.take_damage(20)
 		#inicio/reinicio timer
@@ -190,9 +193,14 @@ func _physics_process(delta):
 			playback.travel("jump_start")
 		else:
 			playback.travel("idle")			
+	elif not on_floor and basic:
+		playback.travel("Atack1")
 	else:
 		if linear_vel.y > 0:
-			playback.travel("jump_air")
+			if basic:
+				playback.travel("Atack1")
+			else:
+				playback.travel("jump_air")
 			
 		if linear_vel.y==0:
 			playback.travel("jump_down")
