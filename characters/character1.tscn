@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://Textures/slug1.1.png" type="Texture" id=1]
 [ext_resource path="res://scripts/character.gd" type="Script" id=2]
@@ -9,8 +9,8 @@ extents = Vector2( 35.4287, 8.36672 )
 [sub_resource type="AnimatedTexture" id=2]
 
 [sub_resource type="Animation" id=3]
-resource_name = "Atack1"
-length = 0.624
+resource_name = "Air_atack1"
+length = 0.397
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
@@ -18,9 +18,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.0312134, 0.0892704, 0.137261, 0.178541, 0.377526 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ 28, 24, 25, 26, 27, 28 ]
 }
 tracks/1/type = "value"
@@ -30,9 +30,9 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.411042, 0.50835 ),
+"times": PoolRealArray( 0, 0.162739, 0.387554 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false, true ]
 }
 
@@ -118,7 +118,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( -0.00466512, 0.0346889, 0.0693779, 0.146053, 0.222727, 0.308732, 0.399402, 0.513397, 0.533421, 0.624761, 0.734091 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ 41, 42, 43, 44, 45, 46, 47, 49, 38, 37, 36 ]
 }
 tracks/1/type = "value"
@@ -159,6 +159,58 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 31, 34, 33 ]
+}
+
+[sub_resource type="Animation" id=68]
+resource_name = "autocombo_random1"
+length = 1.297
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0738197, 0.145962, 0.206711, 0.322123, 0.4, 0.5, 0.574834, 0.675849, 0.732228, 0.843894, 0.936169, 1.03851, 1.1, 1.14 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 37, 39, 40, 46, 45, 46, 47, 48, 16, 17, 28, 27, 30, 31, 32 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attacks/Atack1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.00503316, 0.157706, 0.298634, 0.535193, 0.6627 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Attacks/Atack2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.00503316, 0.355677, 0.535193 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Attacks/Air1:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.936169, 1.03348 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -242,6 +294,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Attacks/Air1:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=12]
 length = 1.083
@@ -275,6 +339,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 23, 22, 22, 22, 23 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attacks/Air1:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Attacks/Atack2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=14]
 length = 0.248
@@ -289,6 +377,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 28, 29, 30, 32 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attacks/Atack2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -323,8 +423,8 @@ b = Vector2( 85.1565, 20.8077 )
 radius = 2.74038
 height = 100.731
 
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "Atack1"
+[sub_resource type="AnimationNodeAnimation" id=77]
+animation = "Air_atack1"
 
 [sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Finisher"
@@ -337,6 +437,12 @@ animation = "atack1"
 
 [sub_resource type="AnimationNodeAnimation" id=23]
 animation = "atack2"
+
+[sub_resource type="AnimationNodeAnimation" id=81]
+animation = "atack2"
+
+[sub_resource type="AnimationNodeAnimation" id=69]
+animation = "autocombo_random1"
 
 [sub_resource type="AnimationNodeAnimation" id=24]
 animation = "ded"
@@ -425,17 +531,39 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+[sub_resource type="AnimationNodeStateMachineTransition" id=71]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=74]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=76]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=78]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=79]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=80]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=84]
 
 [sub_resource type="AnimationNodeStateMachine" id=61]
-"states/Atack1 /node" = SubResource( 19 )
-"states/Atack1 /position" = Vector2( 723.225, -22.843 )
+states/Air_atack1/node = SubResource( 77 )
+states/Air_atack1/position = Vector2( 631, 60.9539 )
 states/Finisher/node = SubResource( 20 )
 states/Finisher/position = Vector2( -161.495, 312.189 )
 states/Walk/node = SubResource( 21 )
@@ -444,6 +572,10 @@ states/atack1/node = SubResource( 22 )
 states/atack1/position = Vector2( 134, 312.189 )
 states/atack2/node = SubResource( 23 )
 states/atack2/position = Vector2( 371, 306 )
+states/atack2_2/node = SubResource( 81 )
+states/atack2_2/position = Vector2( 323.346, 77 )
+states/autocombo_random1/node = SubResource( 69 )
+states/autocombo_random1/position = Vector2( -42.3139, 173.19 )
 states/ded/node = SubResource( 24 )
 states/ded/position = Vector2( -386.886, 346.495 )
 states/hurt/node = SubResource( 25 )
@@ -451,15 +583,15 @@ states/hurt/position = Vector2( -386.886, 191 )
 states/idle/node = SubResource( 26 )
 states/idle/position = Vector2( -294, 77 )
 states/jump_air/node = SubResource( 27 )
-states/jump_air/position = Vector2( 519, 100 )
+states/jump_air/position = Vector2( 471, 103 )
 states/jump_down/node = SubResource( 28 )
 states/jump_down/position = Vector2( 631, 183 )
 states/jump_start/node = SubResource( 29 )
-states/jump_start/position = Vector2( 519, 42 )
-transitions = [ "idle", "Walk", SubResource( 30 ), "Walk", "jump_start", SubResource( 31 ), "jump_start", "jump_air", SubResource( 32 ), "jump_air", "jump_down", SubResource( 33 ), "jump_down", "idle", SubResource( 34 ), "Walk", "idle", SubResource( 35 ), "idle", "atack1", SubResource( 36 ), "idle", "atack2", SubResource( 37 ), "atack1", "Walk", SubResource( 38 ), "atack2", "Walk", SubResource( 39 ), "Walk", "atack1", SubResource( 40 ), "Walk", "atack2", SubResource( 41 ), "hurt", "ded", SubResource( 42 ), "idle", "hurt", SubResource( 43 ), "jump_down", "hurt", SubResource( 44 ), "Walk", "hurt", SubResource( 45 ), "atack2", "hurt", SubResource( 46 ), "atack1", "hurt", SubResource( 47 ), "hurt", "idle", SubResource( 48 ), "idle", "jump_start", SubResource( 49 ), "atack1", "idle", SubResource( 50 ), "atack2", "idle", SubResource( 51 ), "atack1", "Finisher", SubResource( 52 ), "atack2", "Finisher", SubResource( 53 ), "Finisher", "idle", SubResource( 54 ), "idle", "Finisher", SubResource( 55 ), "Finisher", "hurt", SubResource( 56 ), "Walk", "Finisher", SubResource( 57 ), "jump_air", "Atack1 ", SubResource( 58 ), "Atack1 ", "jump_down", SubResource( 59 ), "jump_start", "Atack1 ", SubResource( 60 ) ]
+states/jump_start/position = Vector2( 439, 21 )
+transitions = [ "idle", "Walk", SubResource( 30 ), "Walk", "jump_start", SubResource( 31 ), "jump_start", "jump_air", SubResource( 32 ), "jump_air", "jump_down", SubResource( 33 ), "jump_down", "idle", SubResource( 34 ), "Walk", "idle", SubResource( 35 ), "idle", "atack1", SubResource( 36 ), "idle", "atack2", SubResource( 37 ), "atack1", "Walk", SubResource( 38 ), "atack2", "Walk", SubResource( 39 ), "Walk", "atack1", SubResource( 40 ), "Walk", "atack2", SubResource( 41 ), "hurt", "ded", SubResource( 42 ), "idle", "hurt", SubResource( 43 ), "jump_down", "hurt", SubResource( 44 ), "Walk", "hurt", SubResource( 45 ), "atack2", "hurt", SubResource( 46 ), "atack1", "hurt", SubResource( 47 ), "hurt", "idle", SubResource( 48 ), "idle", "jump_start", SubResource( 49 ), "atack1", "idle", SubResource( 50 ), "atack2", "idle", SubResource( 51 ), "atack1", "Finisher", SubResource( 52 ), "atack2", "Finisher", SubResource( 53 ), "Finisher", "idle", SubResource( 54 ), "idle", "Finisher", SubResource( 55 ), "Finisher", "hurt", SubResource( 56 ), "Walk", "Finisher", SubResource( 57 ), "autocombo_random1", "hurt", SubResource( 71 ), "autocombo_random1", "atack1", SubResource( 72 ), "autocombo_random1", "atack2", SubResource( 73 ), "autocombo_random1", "idle", SubResource( 74 ), "autocombo_random1", "Finisher", SubResource( 75 ), "idle", "autocombo_random1", SubResource( 76 ), "jump_start", "Air_atack1", SubResource( 78 ), "jump_air", "Air_atack1", SubResource( 79 ), "Air_atack1", "jump_air", SubResource( 80 ), "jump_start", "atack2_2", SubResource( 82 ), "jump_air", "atack2_2", SubResource( 83 ), "atack2_2", "jump_down", SubResource( 84 ) ]
 start_node = "idle"
 end_node = "ded"
-graph_offset = Vector2( -158.089, -86.4793 )
+graph_offset = Vector2( -98.6537, 1.93388 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=62]
 
@@ -523,17 +655,18 @@ texture = ExtResource( 1 )
 normal_map = SubResource( 2 )
 vframes = 13
 hframes = 5
-frame = 1
+frame = 22
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.5
 method_call_mode = 1
-anims/Atack1 = SubResource( 3 )
+anims/Air_atack1 = SubResource( 3 )
 anims/Finisher = SubResource( 4 )
 anims/Walk = SubResource( 5 )
 anims/atack1 = SubResource( 6 )
 anims/atack2 = SubResource( 7 )
 anims/atak_dash = SubResource( 8 )
+anims/autocombo_random1 = SubResource( 68 )
 anims/crouch = SubResource( 9 )
 anims/ded = SubResource( 10 )
 anims/hurt = SubResource( 11 )
@@ -549,7 +682,7 @@ position = Vector2( 9.65332, -15.6077 )
 
 [node name="Atack1" type="CollisionShape2D" parent="Attacks"]
 light_mask = 2
-position = Vector2( 24.7614, 20.6111 )
+position = Vector2( 32.7662, 19.5438 )
 rotation = 1.41546
 shape = SubResource( 16 )
 disabled = true
@@ -629,6 +762,4 @@ allow_greater = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="ready" from="." to="." method="_on_character_ready"]
-[connection signal="ready" from="sprite" to="." method="_on_sprite_ready"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
