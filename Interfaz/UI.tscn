@@ -1,0 +1,282 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Interfaz/Barras Vida/Borde Barra Terrestre.png" type="Texture" id=1]
+[ext_resource path="res://Interfaz/Barras Vida/Borde Barra Alien.png" type="Texture" id=2]
+[ext_resource path="res://Interfaz/Barras Vida/Relleno Barra Terricola-2.png" type="Texture" id=3]
+[ext_resource path="res://Interfaz/Barras Vida/Relleno Barra Alien.png" type="Texture" id=4]
+[ext_resource path="res://Interfaz/UI.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "alien"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p1_lifebar/textura_P1:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0371627 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p1_lifebar/textura_P1:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0213444 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "alien2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p2_lifebar/textura_P2:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0301855 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p2_lifebar/textura_P2:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.026278 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "terrestre1"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p1_lifebar/textura_P1:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0603711 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p1_lifebar/textura_P1:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.00592084 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "terrestre2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p2_lifebar/textura_P2:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.00995752 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p2_lifebar/textura_P2:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0150927 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "alien"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p1_lifebar/textura_P1:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0371627 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p1_lifebar/textura_P1:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0213444 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "alien2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p2_lifebar/textura_P2:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0301855 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p2_lifebar/textura_P2:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.026278 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "terrestre1"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p1_lifebar/textura_P1:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0603711 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p1_lifebar/textura_P1:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.00592084 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "terrestre2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("p2_lifebar/textura_P2:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.00995752 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("p2_lifebar/textura_P2:texture_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.0150927 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+margin_right = -25.0
+margin_bottom = -487.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/alien = SubResource( 1 )
+anims/alien2 = SubResource( 2 )
+anims/terrestre1 = SubResource( 3 )
+anims/terrestre2 = SubResource( 4 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/alien = SubResource( 5 )
+anims/alien2 = SubResource( 6 )
+anims/terrestre1 = SubResource( 7 )
+anims/terrestre2 = SubResource( 8 )
+
+[node name="p1_lifebar" type="HBoxContainer" parent="."]
+margin_left = 35.0
+margin_right = 192.0
+margin_bottom = 84.0
+rect_scale = Vector2( 2, 2 )
+size_flags_stretch_ratio = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="textura_P1" type="TextureProgress" parent="p1_lifebar"]
+margin_right = 195.0
+margin_bottom = 85.0
+value = 100.0
+texture_over = ExtResource( 1 )
+texture_progress = ExtResource( 3 )
+fill_mode = 1
+
+[node name="p2_lifebar" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 80.5
+margin_right = 10.0
+margin_bottom = 85.0
+rect_scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="textura_P2" type="TextureProgress" parent="p2_lifebar"]
+margin_right = 195.0
+margin_bottom = 85.0
+value = 100.0
+texture_over = ExtResource( 1 )
+texture_progress = ExtResource( 3 )
